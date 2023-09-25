@@ -29,7 +29,6 @@ import java.util.concurrent.atomic.AtomicReference;
 public class LoggingFilter extends OncePerRequestFilter {
 
     public static final String MASK_VAL = "**************";
-
     @Value("${sensitives:}")
     private String[] sensitives;
 
@@ -50,7 +49,7 @@ public class LoggingFilter extends OncePerRequestFilter {
 
             //Add logic for data filter
             log.info("Request [{} {}. query={{}}, payload={{}}, headers={}]",
-                    request.getMethod(), request.getRequestURI(), maskParams(request.getQueryString()), requestBody, getHeaders(requestWrapper));
+                    request.getMethod(), request.getRequestURI(), maskParams(request.getQueryString()), maskJson(requestBody), maskJson(getHeaders(requestWrapper)));
             log.info("Response [status={}, body={}]", response.getStatus(), maskJson(responseBody));
 
             responseWrapper.copyBodyToResponse();
@@ -80,6 +79,10 @@ public class LoggingFilter extends OncePerRequestFilter {
         return replaceParams.get();
     }
 
+    private String maskJson(Map<String, String> data) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return maskJson(mapper.writeValueAsString(data));
+    }
     private String maskJson(String jsonString) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(jsonString);
@@ -93,5 +96,5 @@ public class LoggingFilter extends OncePerRequestFilter {
         });
         return node.toString();
     }
-
+    
 }
