@@ -1,6 +1,6 @@
 # Simple Request and Response Logger for APIs
 
-This example demonstrates how all Request and Reponses for all API calls can be logged using Spring Boot.
+This example demonstrates how all Request and Reponses for all API calls can be logged using Spring Boot.  It also masks sensitive data based on your requirements.
 
 *NOTE: Please do NOT log PII Data!*
 

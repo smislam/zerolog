@@ -1,6 +1,9 @@
 spring:
   application:
     name: ZeroLog
+  output:
+    ansi:
+      enabled: ALWAYS
 
 logging:
   pattern:
@@ -9,3 +12,6 @@ logging:
 springdoc:
   api-docs:
     path: /api-docs
+
+sensitives: userId,SSN,name,firstname,lastname,email,address
+
