@@ -1,13 +1,12 @@
 # Simple Request and Response Logger for APIs
 
-This example demonstrates how Request and Reponses for all API calls can be logged using Spring Boot.  It also masks sensitive data based on your requirements.  It is written using Java and Spring Boot.
-
-*NOTE: Please do NOT log PII or Sensitive Data!*
+This example demonstrates how Request and Reponses for all API calls can be logged using Spring Boot.  It also masks sensitive data based on your requirements.
 
 ## What does it build?
-* Uses Message Diagnostic Context (MDC) to add UserId to all logs.  
+* Uses Message Diagnostic Context (MDC) to add UserId to all logs
 * Uses Micrometer to Tracing data for each log
 * Creates a LoggingFilter that will intercept all calls and get relevant data
+* Adds custom and configurable logic to mask PII and Sensitive data
 * Uses OpenAPI UI (Swagger) to visualize and test the API endpoints
 
 ## Example of the log
